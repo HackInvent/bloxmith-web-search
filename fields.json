@@ -1,0 +1,152 @@
+[
+  {
+    "key": "enabled",
+    "type": "boolean",
+    "label": "Enable remote access",
+    "help": "Off by default. While off, no query is sent to any provider."
+  },
+  {
+    "key": "provider",
+    "type": "select",
+    "options": ["searxng", "brave", "serpapi", "wikipedia"],
+    "option_labels": {"searxng": "SearXNG (self-hosted)", "brave": "Brave Search API", "serpapi": "SerpAPI (Google)", "wikipedia": "Wikipedia"},
+    "label": "Provider",
+    "help": "The one service this node contacts. Wikipedia needs no key; Brave and SerpAPI need an API key in the wallet; SearXNG needs your instance URL."
+  },
+  {
+    "key": "secret_ref",
+    "label": "API key (wallet)",
+    "placeholder": "secret://workspace/brave_search",
+    "show_when": {"provider": ["brave", "serpapi"]},
+    "help": "Wallet reference holding the Brave subscription token or the SerpAPI key, never the key itself."
+  },
+  {
+    "key": "searxng_url",
+    "label": "SearXNG instance URL",
+    "placeholder": "https://search.example.org",
+    "show_when": {"provider": "searxng"},
+    "help": "Base URL of your SearXNG instance. Its settings must list json in search.formats."
+  },
+  {
+    "key": "allow_private_network",
+    "type": "boolean",
+    "label": "Allow private network",
+    "show_when": {"provider": "searxng"},
+    "help": "Allow a SearXNG instance on loopback or a private LAN address. Link-local and cloud metadata addresses stay refused."
+  },
+  {
+    "key": "allow_insecure_http",
+    "type": "boolean",
+    "label": "Allow plain HTTP",
+    "show_when": {"provider": "searxng"},
+    "help": "Allow an http:// SearXNG URL. Queries then travel unencrypted; use it only on a trusted network."
+  },
+  {
+    "key": "count",
+    "type": "integer",
+    "min": 1,
+    "max": 20,
+    "label": "Results per search",
+    "help": "Default number of results; a query can ask for 1 to 20."
+  },
+  {
+    "key": "language",
+    "label": "Language",
+    "placeholder": "en",
+    "help": "Default language code such as en, fr or pt-br. Empty: provider default (English Wikipedia)."
+  },
+  {
+    "key": "region",
+    "label": "Region",
+    "placeholder": "US",
+    "show_when": {"provider": ["searxng", "brave", "serpapi"]},
+    "help": "Default two-letter country code such as US or FR. Empty: provider default."
+  },
+  {
+    "key": "safe_search",
+    "type": "select",
+    "options": ["off", "moderate", "strict"],
+    "option_labels": {"off": "Off", "moderate": "Moderate", "strict": "Strict"},
+    "label": "Safe search",
+    "show_when": {"provider": ["searxng", "brave", "serpapi"]},
+    "help": "Default adult-content filter. SerpAPI sends no filter for Moderate (Google default)."
+  },
+  {
+    "key": "time_range",
+    "type": "select",
+    "options": ["", "day", "week", "month", "year"],
+    "option_labels": {"": "Any time", "day": "Past day", "week": "Past week", "month": "Past month", "year": "Past year"},
+    "label": "Time range",
+    "show_when": {"provider": ["searxng", "brave", "serpapi"]},
+    "help": "Default freshness filter. Wikipedia search has none."
+  },
+  {
+    "key": "timeout_sec",
+    "type": "integer",
+    "min": 5,
+    "max": 120,
+    "advanced": true,
+    "label": "Search deadline (s)",
+    "help": "Total time for one search, including SearXNG pages and retry waits."
+  },
+  {
+    "key": "max_pages",
+    "type": "integer",
+    "min": 1,
+    "max": 10,
+    "advanced": true,
+    "label": "SearXNG pages per search",
+    "show_when": {"provider": "searxng"},
+    "help": "Most SearXNG result pages one search may request to fill the asked results."
+  },
+  {
+    "key": "max_retries",
+    "type": "integer",
+    "min": 0,
+    "max": 5,
+    "advanced": true,
+    "label": "Retries",
+    "help": "Retries after HTTP 429, HTTP 5xx or a network failure. Quota and key errors are never retried."
+  },
+  {
+    "key": "max_retry_wait_sec",
+    "type": "integer",
+    "min": 1,
+    "max": 120,
+    "advanced": true,
+    "label": "Longest retry wait (s)",
+    "help": "A Retry-After above this value returns a rate_limited error instead of waiting."
+  },
+  {
+    "key": "max_response_bytes",
+    "type": "integer",
+    "min": 65536,
+    "max": 8388608,
+    "advanced": true,
+    "label": "Response size limit (bytes)",
+    "help": "Larger provider responses are refused as protocol errors."
+  },
+  {
+    "key": "max_text_chars",
+    "type": "integer",
+    "min": 100,
+    "max": 20000,
+    "advanced": true,
+    "label": "Text limit (characters)",
+    "help": "Longest snippet or Wikipedia extract kept; longer text is cut at a word boundary."
+  },
+  {
+    "key": "api_base_url",
+    "advanced": true,
+    "label": "API base URL (tests only)",
+    "placeholder": "http://127.0.0.1:8080",
+    "show_when": {"provider": ["brave", "serpapi", "wikipedia"]},
+    "help": "Keep empty to use the official API. Only a loopback test double may replace it."
+  },
+  {
+    "key": "ca_file",
+    "advanced": true,
+    "label": "Custom CA file",
+    "help": "Optional absolute PEM file for an https:// SearXNG instance or an HTTPS loopback test double. TLS verification cannot be disabled."
+  }
+]

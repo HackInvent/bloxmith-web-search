@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "web_search",
+  "block_version": "0.1.0",
+  "maintained_by": "HackInvent",
+  "source": {
+    "algorithm": "block-source-v1",
+    "sha256": "838fb0fd48f90fe1d3e5563892ff4aeb24644a491de6682518dbd648b9979a0d"
+  },
+  "bloxsmith_compatibility": [
+    "1.0.9"
+  ],
+  "tested_with_bloxsmith": "1.0.9",
+  "validations": [
+    {
+      "bloxsmith_version": "1.0.9",
+      "framework_commit": "f1a87f6369d2acfb8be41d23ea849384cd461c86",
+      "framework_source_sha256": "66e36a13fd9a23a0a0576ec81552d6e479671db6db9b8692cc7486c5aac4f3b8",
+      "tested_at": "2026-10-11T13:39:49.362283+00:00",
+      "status": "passed",
+      "installation_mode": "bundled",
+      "suite_paths": [
+        "tests/F5.01_web_search.py",
+        "tests/F5.02_web_search_runtime.py",
+        "tests/F5.03_web_search_graphs.py",
+        "tests/F8.01_web_search_ui.py",
+        "tests/F8.02_web_search_ui_linked.py"
+      ],
+      "suite_count": 5,
+      "report_sha256": "0ad3ac5dadfeaf1b621c74019917d8d45aca9f2ee8b357bd67fb78c879976ecb"
+    }
+  ]
+}
